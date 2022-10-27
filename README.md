@@ -15,55 +15,46 @@
 | birthday        | date   | null: false               |
 
 ### Association
+- has_many   :orders
 - has_many   :items
-- has_many   :comments
-- belongs_to :buyer
 
 ## itemsテーブル
 
-| Column          | Type       | Options                        |
-| --------------- | ---------- | ------------------------------ |
-| name            | string     | null: false                    |
-| content         | text       | null: false                    |
-| category        | string     | null: false                    |
-| condition       | string     | null: false                    |
-| delivery_charge | string     | null: false                    |
-| delivery_area   | string     | null: false                    |
-| delivery_day    | string     | null: false                    |
-| price           | integer    | null: false                    |
-| user            | references | null: false, foreign_key: true |
+| Column          | Type       | Options                         |
+| --------------- | ---------- | ------------------------------- |
+| name            | string     | null: false                     |
+| content         | text       | null: false                     |
+| price           | integer    | null: false                     |
+| user_id         | references | null: false, foreign_key: true  |
+| category_id     | integer    | numericality: { other_than: 1 } |
+| condition_id    | integer    | numericality: { other_than: 1 } |
+| charge_id       | integer    | numericality: { other_than: 1 } |
+| area_id         | integer    | numericality: { other_than: 1 } |
+| day_id          | integer    | numericality: { other_than: 1 } |
 
 ### Association
-- has_many   :comments
 - belongs_to :user
 - has_one    :order
+- belongs_to :category
+- belongs_to :condition
+- belongs_to :charge
+- belongs_to :area
+- belongs_to :day
 
-## commentsテーブル
-
-| Column  | Type       | Options                        |
-| ------- | ---------- | ------------------------------ |
-| text    | string     | null: false                    |
-| user    | references | null: false, foreign_key: true |
-| item    | references | null: false, foreign_key: true |
-
-### Association
-
-- belongs_to :user
-- belongs_to :item
 
 ## ordersテーブル
 
 | Column  | Type       | Options                        |
 | ------- | ---------- | ------------------------------ |
 | item    | references | null: false, foreign_key: true |
-| buyer   | references | null: false, foreign_key: true |
+| user_id | references | null: false, foreign_key: true |
 
 ### Association
-
+- belongs_to :user
 - belongs_to :item
-- belongs_to :buyer
+- belongs_to :shipping
 
-## buyersテーブル
+## shippingsテーブル
 
 | Column          | Type       | Options                        |
 | --------------- | ---------- | ------------------------------ |
@@ -71,12 +62,20 @@
 | state           | string     | null: false                    |
 | city            | string     | null: false                    |
 | addres          | string     | null: false                    |
-| building        | string     | null: false                    |
+| building        | string     |                                |
 | phone_number    | string     | null: false                    |
-| user            | references | null: false, foreign_key: true |
 | order           | references | null: false, foreign_key: true |
 
 ### Association
-
-- belongs_to :user
 - belongs_to :order
+
+#### ここから下は全てactive_hashで実装
+
+| category_id  | integer | null: false                      |
+| condition_id | integer | null: false                      |
+| charge_id    | integer | null: false                      |
+| area_id      | integer | null: false                      |
+| day_id       | integer | null: false                      |
+
+### Association
+- has_many   :items
