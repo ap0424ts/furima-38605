@@ -3,16 +3,16 @@
 
 ## usersテーブル
 
-| Column          | Type   | Options                   |
-| --------------- | ------ | ------------------------- |
-| nickname        | string | null: false               |
-| email           | string | null: false, unique: true |
-| password        | string | null: false               |
-| last_name       | string | null: false               |
-| first_name      | string | null: false               |
-| last_name_kana  | string | null: false               |
-| first_name_kana | string | null: false               |
-| birthday        | date   | null: false               |
+| Column              | Type   | Options                   |
+| ------------------- | ------ | ------------------------- |
+| nickname            | string | null: false               |
+| email               | string | null: false, unique: true |
+| encrypteed_password | string | null: false               |
+| last_name           | string | null: false               |
+| first_name          | string | null: false               |
+| last_name_kana      | string | null: false               |
+| first_name_kana     | string | null: false               |
+| birthday            | date   | null: false               |
 
 ### Association
 - has_many   :orders
@@ -25,7 +25,7 @@
 | name            | string     | null: false                     |
 | content         | text       | null: false                     |
 | price           | integer    | null: false                     |
-| user_id         | references | null: false, foreign_key: true  |
+| user            | references | null: false, foreign_key: true  |
 | category_id     | integer    | numericality: { other_than: 1 } |
 | condition_id    | integer    | numericality: { other_than: 1 } |
 | charge_id       | integer    | numericality: { other_than: 1 } |
@@ -40,6 +40,7 @@
 - belongs_to :charge
 - belongs_to :area
 - belongs_to :day
+- has_one_attached : image
 
 
 ## ordersテーブル
@@ -47,18 +48,18 @@
 | Column  | Type       | Options                        |
 | ------- | ---------- | ------------------------------ |
 | item    | references | null: false, foreign_key: true |
-| user_id | references | null: false, foreign_key: true |
+| user    | references | null: false, foreign_key: true |
 
 ### Association
-- belongs_to :user
-- belongs_to :item
-- belongs_to :shipping
+- belongs_to       :user
+- belongs_to       :item
+- has_one          :shipping
 
 ## shippingsテーブル
 
 | Column          | Type       | Options                        |
 | --------------- | ---------- | ------------------------------ |
-| post_code       | integer    | null: false                    |
+| post_code       | string     | null: false                    |
 | state           | string     | null: false                    |
 | city            | string     | null: false                    |
 | addres          | string     | null: false                    |
