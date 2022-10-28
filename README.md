@@ -26,11 +26,11 @@
 | content         | text       | null: false                     |
 | price           | integer    | null: false                     |
 | user            | references | null: false, foreign_key: true  |
-| category_id     | integer    | numericality: { other_than: 1 } |
-| condition_id    | integer    | numericality: { other_than: 1 } |
-| charge_id       | integer    | numericality: { other_than: 1 } |
-| area_id         | integer    | numericality: { other_than: 1 } |
-| day_id          | integer    | numericality: { other_than: 1 } |
+| category_id     | integer    | null: false                     |
+| condition_id    | integer    | null: false                     |
+| charge_id       | integer    | null: false                     |
+| area_id         | integer    | null: false                     |
+| day_id          | integer    | null: false                     |
 
 ### Association
 - belongs_to :user
