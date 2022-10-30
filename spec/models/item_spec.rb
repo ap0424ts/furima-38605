@@ -103,15 +103,15 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include "Condition must be other than 1"
       end
-      it 'day_idが空では登録できない' do
-        @item.day_id = ''
+      it 'delivery_idが空では登録できない' do
+        @item.delivery_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include "Day is not a number"
+        expect(@item.errors.full_messages).to include "Delivery is not a number"
       end
-      it 'day_idが2~4以外では登録できない' do
-        @item.day_id = '1'
+      it 'delivery_idが2~4以外では登録できない' do
+        @item.delivery_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include "Day must be other than 1"
+        expect(@item.errors.full_messages).to include "Delivery must be other than 1"
       end
       it 'imageが空では登録できない' do
         @item.image = nil

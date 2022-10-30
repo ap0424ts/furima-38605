@@ -30,7 +30,7 @@
 | condition_id    | integer    | null: false                     |
 | charge_id       | integer    | null: false                     |
 | area_id         | integer    | null: false                     |
-| day_id          | integer    | null: false                     |
+| delivery_id     | integer    | null: false                     |
 
 ### Association
 - belongs_to :user
@@ -39,7 +39,7 @@
 - belongs_to :condition
 - belongs_to :charge
 - belongs_to :area
-- belongs_to :day
+- belongs_to :delivery_id
 - has_one_attached : image
 
 
@@ -76,7 +76,7 @@
 | condition_id | integer | null: false                      |
 | charge_id    | integer | null: false                      |
 | area_id      | integer | null: false                      |
-| day_id       | integer | null: false                      |
+| delivery_id  | integer | null: false                      |
 
 ### Association
 - has_many   :items
