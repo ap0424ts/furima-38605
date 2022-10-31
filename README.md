@@ -39,7 +39,7 @@
 - belongs_to :condition
 - belongs_to :charge
 - belongs_to :area
-- belongs_to :delivery_id
+- belongs_to :delivery
 - has_one_attached : image
 
 
