@@ -1,6 +1,6 @@
 class OrderShipping
   include ActiveModel::Model
-  attr_accessor :item_id, :user_id, :post_code, :area_id, :city, :addres, :buildig, :phone_number
+  attr_accessor :item_id, :user_id, :post_code, :area_id, :city, :addres, :building, :phone_number
 
   with_options presence: true do
     validates :item_id
@@ -15,6 +15,6 @@ class OrderShipping
 
   def save
     order = Order.create(item_id: item_id, user_id: user_id)
-    Shipping.create(post_code: post_code, state: state, city:city, addres:addres, building:building, phone_number:phone_number, order_id:order.id)
+    Shipping.create(post_code: post_code, area_id: area_id, city:city, addres:addres, building:building, phone_number:phone_number, order_id:order.id)
   end
 end
